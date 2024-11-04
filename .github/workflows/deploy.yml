@@ -25,6 +25,10 @@ jobs:
       - name: Buildando app
         run: npm run build --prod  # O Angular CLI usará as configurações do angular.json
 
+      - name: Copiar arquivos da pasta server para docs
+        run: |
+          cp -r docs/server/* docs/  # Copia todos os arquivos da pasta server para docs
+
       - name: Criar branch gh-pages se não existir
         run: |
           git fetch origin gh-pages || git checkout --orphan gh-pages
@@ -32,7 +36,7 @@ jobs:
 
       - name: Copiar arquivos para a branch gh-pages
         run: |
-          cp -r docs/* .  # Copia os arquivos da pasta docs para a raiz
+          cp -r docs/* .  # Copia os arquivos da pasta docs para a raiz da branch
           git add .
           git commit -m "Deploying to GitHub Pages" || echo "No changes to commit"
 
