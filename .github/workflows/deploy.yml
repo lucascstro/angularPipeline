@@ -29,9 +29,3 @@ jobs:
         run: |
           cp -r docs/server/* docs/  # Copia todos os arquivos da pasta server para docs
 
-      - name: Publicando no GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GH_TOKEN }}
-          publish_dir: .  # Publica a partir da raiz da branch gh-pages
-          #publish_branch: gh-pages
