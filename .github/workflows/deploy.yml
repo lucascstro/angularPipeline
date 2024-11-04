@@ -29,20 +29,9 @@ jobs:
         run: |
           cp -r docs/server/* docs/  # Copia todos os arquivos da pasta server para docs
 
-      - name: Criar branch gh-pages se não existir
-        run: |
-          git fetch origin gh-pages || git checkout --orphan gh-pages
-          git checkout gh-pages
-
-      - name: Copiar arquivos para a branch gh-pages
-        run: |
-          cp -r docs/* .  # Copia os arquivos da pasta docs para a raiz da branch
-          git add .
-          git commit -m "Deploying to GitHub Pages" || echo "No changes to commit"
-
       - name: Publicando no GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GH_TOKEN }}
           publish_dir: .  # Publica a partir da raiz da branch gh-pages
-          publish_branch: gh-pages
+          #publish_branch: gh-pages
